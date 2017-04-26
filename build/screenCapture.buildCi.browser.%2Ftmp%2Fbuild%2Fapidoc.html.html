@@ -83,16 +83,13 @@
 
         <li>
 
-            <a class="apidocElementLiA" href="#apidoc.element.languagedetect.toString">
-            function <span class="apidocSignatureSpan">languagedetect.</span>toString
-            <span class="apidocSignatureSpan">()</span>
-            </a>
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">languagedetect.</span>ISO639</span>
 
         </li>
 
         <li>
 
-            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">languagedetect.</span>ISO639</span>
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">languagedetect.</span>LanguageDetect.prototype</span>
 
         </li>
 
@@ -163,6 +160,77 @@
         <li>
 
             <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">languagedetect.ISO639.</span>nameToCode3</span>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.languagedetect.LanguageDetect">module languagedetect.LanguageDetect</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.languagedetect.LanguageDetect.LanguageDetect">
+            function <span class="apidocSignatureSpan">languagedetect.</span>LanguageDetect
+            <span class="apidocSignatureSpan">(languageType)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.languagedetect.LanguageDetect.prototype">module languagedetect.LanguageDetect.prototype</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.languagedetect.LanguageDetect.prototype.detect">
+            function <span class="apidocSignatureSpan">languagedetect.LanguageDetect.prototype.</span>detect
+            <span class="apidocSignatureSpan">(sample, limit)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.languagedetect.LanguageDetect.prototype.distance">
+            function <span class="apidocSignatureSpan">languagedetect.LanguageDetect.prototype.</span>distance
+            <span class="apidocSignatureSpan">(arr1, arr2)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.languagedetect.LanguageDetect.prototype.getLanguageCount">
+            function <span class="apidocSignatureSpan">languagedetect.LanguageDetect.prototype.</span>getLanguageCount
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.languagedetect.LanguageDetect.prototype.getLanguages">
+            function <span class="apidocSignatureSpan">languagedetect.LanguageDetect.prototype.</span>getLanguages
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.languagedetect.LanguageDetect.prototype.normalizeScore">
+            function <span class="apidocSignatureSpan">languagedetect.LanguageDetect.prototype.</span>normalizeScore
+            <span class="apidocSignatureSpan">(score, baseCount)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.languagedetect.LanguageDetect.prototype.setLanguageType">
+            function <span class="apidocSignatureSpan">languagedetect.LanguageDetect.prototype.</span>setLanguageType
+            <span class="apidocSignatureSpan">(type)</span>
+            </a>
 
         </li>
 
@@ -260,19 +328,6 @@
             <a class="apidocElementLiA" href="#apidoc.element.languagedetect.Parser.prototype.unicodeBlockName">
             function <span class="apidocSignatureSpan">languagedetect.Parser.prototype.</span>unicodeBlockName
             <span class="apidocSignatureSpan">(unicode, blockCount)</span>
-            </a>
-
-        </li>
-
-    </ol></li>
-
-    <li class="apidocModuleLi"><a href="#apidoc.module.languagedetect.toString">module languagedetect.toString</a><ol>
-
-        <li>
-
-            <a class="apidocElementLiA" href="#apidoc.element.languagedetect.toString.toString">
-            function <span class="apidocSignatureSpan">languagedetect.</span>toString
-            <span class="apidocSignatureSpan">()</span>
             </a>
 
         </li>
@@ -447,19 +502,6 @@
 
 
 
-    <h2>
-        <a href="#apidoc.element.languagedetect.toString" id="apidoc.element.languagedetect.toString">
-        function <span class="apidocSignatureSpan">languagedetect.</span>toString
-        <span class="apidocSignatureSpan">()</span>
-        </a>
-    </h2>
-    <ul>
-    <li>description and source-code<pre class="apidocCodePre">toString = function () {
-    return text;
-}</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
-    </ul>
-
 
 
 
@@ -481,7 +523,23 @@
     <li>description and source-code<pre class="apidocCodePre">getCode2 = function (lang) {
   return Languages.nameToCode2[String(lang).toLowerCase()] || null;
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+var scoresLength = scores.length;
+
+if (!scoresLength) return [];
+
+switch (me.languageType) {
+  case 'iso2':
+    for (i = scoresLength; i--;) {
+      scores[i][0] = ISO639.<span class="apidocCodeKeywordSpan">getCode2</span>(scores[i][0]);
+    }
+    break;
+  case 'iso3':
+    for (i = scoresLength; i--;) {
+      scores[i][0] = ISO639.getCode3(scores[i][0]);
+    }
+    break;
+...</pre></li>
     </ul>
 
 
@@ -496,7 +554,23 @@
     <li>description and source-code<pre class="apidocCodePre">getCode3 = function (lang) {
   return Languages.nameToCode3[String(lang).toLowerCase()] || null;
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+    case 'iso2':
+      for (i = scoresLength; i--;) {
+        scores[i][0] = ISO639.getCode2(scores[i][0]);
+      }
+      break;
+    case 'iso3':
+      for (i = scoresLength; i--;) {
+        scores[i][0] = ISO639.<span class="apidocCodeKeywordSpan">getCode3</span>(scores[i][0]);
+      }
+      break;
+  }
+
+  // limit the number of returned scores
+  return limit &gt; 0 ? scores.slice(0, limit) : scores;
+}
+...</pre></li>
     </ul>
 
 
@@ -511,7 +585,22 @@
     <li>description and source-code<pre class="apidocCodePre">getName2 = function (code) {
   return Languages.code2ToName[String(code).toLowerCase()] || null;
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  t.equal(ISO639.getCode3('dANiSH'), 'dan');
+  t.equal(ISO639.getCode3('unknown'), null);
+
+  return t.done();
+};
+
+exports.getName2 = function (t) {
+  t.equal(ISO639.<span class="apidocCodeKeywordSpan">getName2</span>('en'), 'english');
+  t.equal(ISO639.getName2('ru'), 'russian');
+  t.equal(ISO639.getName2('da'), 'danish');
+  t.equal(ISO639.getName2(null), null);
+
+  return t.done();
+};
+...</pre></li>
     </ul>
 
 
@@ -526,7 +615,22 @@
     <li>description and source-code<pre class="apidocCodePre">getName3 = function (code) {
   return Languages.code3ToName[String(code).toLowerCase()] || null;
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  t.equal(ISO639.getName2('da'), 'danish');
+  t.equal(ISO639.getName2(null), null);
+
+  return t.done();
+};
+
+exports.getName3 = function (t) {
+  t.equal(ISO639.<span class="apidocCodeKeywordSpan">getName3</span>('eng'), 'english');
+  t.equal(ISO639.getName3('rus'), 'russian');
+  t.equal(ISO639.getName3('dan'), 'danish');
+  t.equal(ISO639.getName3(null), null);
+
+  return t.done();
+};
+...</pre></li>
     </ul>
 
 
@@ -536,6 +640,301 @@
 
 
 
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.languagedetect.LanguageDetect" id="apidoc.module.languagedetect.LanguageDetect">module languagedetect.LanguageDetect</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.languagedetect.LanguageDetect.LanguageDetect" id="apidoc.element.languagedetect.LanguageDetect.LanguageDetect">
+        function <span class="apidocSignatureSpan">languagedetect.</span>LanguageDetect
+        <span class="apidocSignatureSpan">(languageType)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">LanguageDetect = function (languageType) {
+
+<span class="apidocCodeCommentSpan">  /**
+   * The trigram data for comparison
+   *
+   * Will be loaded on start from $this-&gt;_db_filename
+   *
+   * May be set to a PEAR_Error object if there is an error during its
+   * initialization
+   *
+   * @var      array
+   * @access   private
+   */
+</span>  this.langDb = {};
+
+  /**
+   * The size of the trigram data arrays
+   *
+   * @var     int
+   * @access  private
+   */
+  this.threshold = 300;
+
+  this.useUnicodeNarrowing = true;
+
+  /**
+   * Constructor
+   *
+   * Load the language database.
+   *
+   */
+  this.langDb = dbLang['trigram'];
+  this.unicodeMap = dbLang['trigram-unicodemap'];
+
+  this.languageType = languageType || null;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.languagedetect.LanguageDetect.prototype" id="apidoc.module.languagedetect.LanguageDetect.prototype">module languagedetect.LanguageDetect.prototype</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.languagedetect.LanguageDetect.prototype.detect" id="apidoc.element.languagedetect.LanguageDetect.prototype.detect">
+        function <span class="apidocSignatureSpan">languagedetect.LanguageDetect.prototype.</span>detect
+        <span class="apidocSignatureSpan">(sample, limit)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">detect = function (sample, limit) {
+  var me = this
+    , scores = [];
+
+  limit = +limit || 0;
+
+  if (sample == '' || String(sample).length &lt; 3) return [];
+
+  var sampleObj = new Parser(sample);
+  sampleObj.setPadStart(true);
+  sampleObj.analyze();
+
+  var trigramFreqs = sampleObj.getTrigramRanks()
+    , trigramCount = Object.keys(trigramFreqs).length;
+
+  if (trigramCount == 0) return [];
+
+  var keys = [], i, lang;
+
+  if (this.useUnicodeNarrowing) {
+    var blocks = sampleObj.getUnicodeBlocks()
+      , languages = Object.keys(blocks)
+      , keysLength = languages.length;
+
+    for (i = keysLength; i--;) {
+      if (this.unicodeMap[languages[i]]) {
+        for (lang in this.unicodeMap[languages[i]]) {
+          if (!~keys.indexOf(lang)) keys.push(lang);
+        }
+      }
+    }
+  } else {
+    keys = me.getLanguages();
+  }
+
+  for (i = keys.length; i--;) {
+    var score = me.normalizeScore(me.distance(me.langDb[keys[i]], trigramFreqs), trigramCount);
+    if (score) scores.push([keys[i], score]);
+  }
+
+  // Sort the array
+  scores.sort(function (a, b) { return b[1] - a[1]; });
+  var scoresLength = scores.length;
+
+  if (!scoresLength) return [];
+
+  switch (me.languageType) {
+    case 'iso2':
+      for (i = scoresLength; i--;) {
+        scores[i][0] = ISO639.getCode2(scores[i][0]);
+      }
+      break;
+    case 'iso3':
+      for (i = scoresLength; i--;) {
+        scores[i][0] = ISO639.getCode3(scores[i][0]);
+      }
+      break;
+  }
+
+  // limit the number of returned scores
+  return limit &gt; 0 ? scores.slice(0, limit) : scores;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+var LanguageDetect = require('languagedetect');
+var lngDetector = new LanguageDetect();
+
+// OR
+// var lngDetector = new (require('languagedetect'));
+
+console.log(lngDetector.<span class="apidocCodeKeywordSpan">detect</span>('This is a test.'));
+
+/*
+  [ [ 'english', 0.5969230769230769 ],
+  [ 'hungarian', 0.407948717948718 ],
+  [ 'latin', 0.39205128205128204 ],
+  [ 'french', 0.367948717948718 ],
+  [ 'portuguese', 0.3669230769230769 ],
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.languagedetect.LanguageDetect.prototype.distance" id="apidoc.element.languagedetect.LanguageDetect.prototype.distance">
+        function <span class="apidocSignatureSpan">languagedetect.LanguageDetect.prototype.</span>distance
+        <span class="apidocSignatureSpan">(arr1, arr2)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">distance = function (arr1, arr2) {
+  var me = this
+    , sumdist = 0
+    , keys = Object.keys(arr2)
+    , i;
+
+  for (i = keys.length; i--;) {
+    sumdist += arr1[keys[i]] ? Math.abs(arr2[keys[i]] - arr1[keys[i]]) : me.threshold;
+  }
+
+  return sumdist;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+    }
+  }
+} else {
+  keys = me.getLanguages();
+}
+
+for (i = keys.length; i--;) {
+  var score = me.normalizeScore(me.<span class="apidocCodeKeywordSpan">distance</span>(me.langDb[keys[i]], trigramFreqs), trigramCount
+);
+  if (score) scores.push([keys[i], score]);
+}
+
+// Sort the array
+scores.sort(function (a, b) { return b[1] - a[1]; });
+var scoresLength = scores.length;
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.languagedetect.LanguageDetect.prototype.getLanguageCount" id="apidoc.element.languagedetect.LanguageDetect.prototype.getLanguageCount">
+        function <span class="apidocSignatureSpan">languagedetect.LanguageDetect.prototype.</span>getLanguageCount
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">getLanguageCount = function () {
+  return this.getLanguages().length;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+t.equal(clean(l.normalizeScore(39920, 143)), 0.0694638694639);
+t.equal(clean(l.normalizeScore(41657, 143)), 0.0289743589744);
+
+return t.done();
+};
+
+exports.getLanguageCount = function (t) {
+t.equal(new LanguageDetect().<span class="apidocCodeKeywordSpan">getLanguageCount</span>(), 52);
+
+return t.done();
+};
+
+exports.detectShortString = function(t) {
+var l = new LanguageDetect();
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.languagedetect.LanguageDetect.prototype.getLanguages" id="apidoc.element.languagedetect.LanguageDetect.prototype.getLanguages">
+        function <span class="apidocSignatureSpan">languagedetect.LanguageDetect.prototype.</span>getLanguages
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">getLanguages = function () {
+  return Object.keys(this.langDb);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+/**
+ * Returns the number of languages that this object can detect
+ *
+ * @access public
+ * @return int the number of languages
+ */
+getLanguageCount:function () {
+  return this.<span class="apidocCodeKeywordSpan">getLanguages</span>().length;
+},
+
+setLanguageType:function (type) {
+  return this.languageType = type;
+},
+
+/**
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.languagedetect.LanguageDetect.prototype.normalizeScore" id="apidoc.element.languagedetect.LanguageDetect.prototype.normalizeScore">
+        function <span class="apidocSignatureSpan">languagedetect.LanguageDetect.prototype.</span>normalizeScore
+        <span class="apidocSignatureSpan">(score, baseCount)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">normalizeScore = function (score, baseCount) {
+  return 1 - (score / (baseCount || this.threshold) / this.threshold);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+    }
+  }
+} else {
+  keys = me.getLanguages();
+}
+
+for (i = keys.length; i--;) {
+  var score = me.<span class="apidocCodeKeywordSpan">normalizeScore</span>(me.distance(me.langDb[keys[i]], trigramFreqs), trigramCount
+);
+  if (score) scores.push([keys[i], score]);
+}
+
+// Sort the array
+scores.sort(function (a, b) { return b[1] - a[1]; });
+var scoresLength = scores.length;
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.languagedetect.LanguageDetect.prototype.setLanguageType" id="apidoc.element.languagedetect.LanguageDetect.prototype.setLanguageType">
+        function <span class="apidocSignatureSpan">languagedetect.LanguageDetect.prototype.</span>setLanguageType
+        <span class="apidocSignatureSpan">(type)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">setLanguageType = function (type) {
+  return this.languageType = type;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
 
 
 </div>
@@ -727,7 +1126,23 @@
     }
   }
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+limit = +limit || 0;
+
+if (sample == '' || String(sample).length &lt; 3) return [];
+
+var sampleObj = new Parser(sample);
+sampleObj.setPadStart(true);
+sampleObj.<span class="apidocCodeKeywordSpan">analyze</span>();
+
+var trigramFreqs = sampleObj.getTrigramRanks()
+  , trigramCount = Object.keys(trigramFreqs).length;
+
+if (trigramCount == 0) return [];
+
+var keys = [], i, lang;
+...</pre></li>
     </ul>
 
 
@@ -843,7 +1258,24 @@ rank[key] = i++;
     <li>description and source-code<pre class="apidocCodePre">getBlockCount = function () {
   return dbUnicodeBlocks.length;
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+require('nodeunit');
+
+var Parser = require('../lib/Parser');
+var str = 'from SW HOUSTON to #PVnation SOPHOMORE STATUS Just A Soul Whose Intentions Are Good Self-expression should always
+ b limitless if that bothers u...dont follow me';
+
+exports.getBlockCount = function (t) {
+t.equal((new Parser()).<span class="apidocCodeKeywordSpan">getBlockCount</span>(), 145);
+
+return t.done();
+};
+
+exports.analyse = function (t) {
+var l = new Parser();
+l.string = str;
+...</pre></li>
     </ul>
 
 
@@ -858,7 +1290,23 @@ rank[key] = i++;
     <li>description and source-code<pre class="apidocCodePre">getTrigramRanks = function () {
   return this.trigramRanks;
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+if (sample == '' || String(sample).length &lt; 3) return [];
+
+var sampleObj = new Parser(sample);
+sampleObj.setPadStart(true);
+sampleObj.analyze();
+
+var trigramFreqs = sampleObj.<span class="apidocCodeKeywordSpan">getTrigramRanks</span>()
+  , trigramCount = Object.keys(trigramFreqs).length;
+
+if (trigramCount == 0) return [];
+
+var keys = [], i, lang;
+
+if (this.useUnicodeNarrowing) {
+...</pre></li>
     </ul>
 
 
@@ -873,7 +1321,23 @@ rank[key] = i++;
     <li>description and source-code<pre class="apidocCodePre">getUnicodeBlocks = function () {
   return this.unicodeBlocks;
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+, trigramCount = Object.keys(trigramFreqs).length;
+
+    if (trigramCount == 0) return [];
+
+    var keys = [], i, lang;
+
+    if (this.useUnicodeNarrowing) {
+var blocks = sampleObj.<span class="apidocCodeKeywordSpan">getUnicodeBlocks</span>()
+  , languages = Object.keys(blocks)
+  , keysLength = languages.length;
+
+for (i = keysLength; i--;) {
+  if (this.unicodeMap[languages[i]]) {
+    for (lang in this.unicodeMap[languages[i]]) {
+      if (!~keys.indexOf(lang)) keys.push(lang);
+...</pre></li>
     </ul>
 
 
@@ -888,7 +1352,22 @@ rank[key] = i++;
     <li>description and source-code<pre class="apidocCodePre">setPadStart = function (bool) {
   this.trigramPadStart = bool || true;
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  , scores = [];
+
+limit = +limit || 0;
+
+if (sample == '' || String(sample).length &lt; 3) return [];
+
+var sampleObj = new Parser(sample);
+sampleObj.<span class="apidocCodeKeywordSpan">setPadStart</span>(true);
+sampleObj.analyze();
+
+var trigramFreqs = sampleObj.getTrigramRanks()
+  , trigramCount = Object.keys(trigramFreqs).length;
+
+if (trigramCount == 0) return [];
+...</pre></li>
     </ul>
 
 
@@ -914,7 +1393,23 @@ rank[key] = i++;
     return aValue &gt; bValue ? -1 : 1;
   }
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+});
+return t.done();
+};
+
+exports.sortFunc = function (t) {
+var l = new Parser();
+
+t.equal(l.<span class="apidocCodeKeywordSpan">sortFunc</span>([" go", 1], ["fro", 1]), -70);
+t.equal(l.sortFunc(["me ", 1], [" go", 1]), 77);
+t.equal(l.sortFunc([" me", 1], [" go", 1]), 6);
+t.equal(l.sortFunc(["w m", 1], [" go", 1]), 87);
+t.equal(l.sortFunc(["ow ", 1], [" go", 1]), 79);
+t.equal(l.sortFunc(["low", 1], [" go", 1]), 76);
+t.equal(l.sortFunc(["llo", 1], [" go", 1]), 76);
+t.equal(l.sortFunc(["oll", 1], [" go", 1]), 79);
+...</pre></li>
     </ul>
 
 
@@ -966,24 +1461,6 @@ if (this.compileUnicode) {
 
 // trigram cleanup
 ...</pre></li>
-    </ul>
-
-
-</div>
-
-<div class="apidocSectionDiv">
-<h1><a href="#apidoc.module.languagedetect.toString" id="apidoc.module.languagedetect.toString">module languagedetect.toString</a></h1>
-
-
-    <h2>
-        <a href="#apidoc.element.languagedetect.toString.toString" id="apidoc.element.languagedetect.toString.toString">
-        function <span class="apidocSignatureSpan">languagedetect.</span>toString
-        <span class="apidocSignatureSpan">()</span>
-        </a>
-    </h2>
-    <ul>
-    <li>description and source-code<pre class="apidocCodePre">function toString() { [native code] }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
 
 
