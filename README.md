@@ -1,4 +1,7 @@
-# api documentation for  [languagedetect (v1.1.1)](http://blog.fgribreau.com/2011/07/week-end-project-nodejs-language.html)  [![npm package](https://img.shields.io/npm/v/npmdoc-languagedetect.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-languagedetect) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-languagedetect.svg)](https://travis-ci.org/npmdoc/node-npmdoc-languagedetect)
+# npmdoc-languagedetect
+
+#### basic api documentation for  [languagedetect (v1.1.1)](http://blog.fgribreau.com/2011/07/week-end-project-nodejs-language.html)  [![npm package](https://img.shields.io/npm/v/npmdoc-languagedetect.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-languagedetect) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-languagedetect.svg)](https://travis-ci.org/npmdoc/node-npmdoc-languagedetect)
+
 #### Nodejs language detection library using n-gram
 
 [![NPM](https://nodei.co/npm/languagedetect.png?downloads=true&downloadRank=true&stars=true)](https://www.npmjs.com/package/languagedetect)
@@ -72,7 +75,8 @@
     "scripts": {
         "test": "node_modules/nodeunit/bin/nodeunit test/*.test.js"
     },
-    "version": "1.1.1"
+    "version": "1.1.1",
+    "bin": {}
 }
 ```
 
